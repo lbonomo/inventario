@@ -1,0 +1,16 @@
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+}
+
+.row .spacer {
+  width: 100%;
+}

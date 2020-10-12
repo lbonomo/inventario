@@ -21,3 +21,17 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
+yarn.md
+package-lock.json
+
+# firebase
+.firebaserc
+.firebase/
+firebase.json
+firebase.md
+src/firebaseConfig.js
+database.rules.json
+
+# otros
+todo.md

@@ -1,0 +1,13 @@
+div.loggin-actions {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 0;
+}
+
+a.small-link {
+  text-decoration: none;
+}
+
+a.small-link:hover {
+  text-decoration: none;
+}

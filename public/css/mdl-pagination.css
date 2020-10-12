@@ -1,0 +1,21 @@
+.mdl-cell .mdl-cell-pagination {
+  margin: 0.5rem auto;
+  text-align: center;
+}
+.mdl-pagination__pages button:first-child {
+  margin-right: 1rem;
+}
+
+.mdl-pagination {
+  display: inline-block;
+  width: auto;
+}
+
+.mdl-pagination__pages {
+  display: flex;
+  flex-direction: row;
+}
+
+.mdl-pagination__pages-buttons {
+  margin: auto 0;
+}

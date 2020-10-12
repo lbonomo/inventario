@@ -1,0 +1,12 @@
+.error-card > .mdl-card__title {
+  background-image: url('../assets/404.svg');
+  background-size: auto;
+  width: auto;
+  height: 200px;
+  padding: 0;
+  margin: 0;
+}
+
+.error-card > .mdl-card__supporting-text {
+  text-align: center;
+}
