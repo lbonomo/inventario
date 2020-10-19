@@ -1,4 +1,4 @@
-@import './normalize.min.css';
+/* @import './normalize.min.css'; */
 @import './fonts.css';
 @import './Material-Icons.css';
 @import './material.min.css';
@@ -34,7 +34,7 @@ html, body {
   padding: 0;
 }
 
-.theme1-layout .mdl-layout__header .mdl-layout__drawer-button {
+.demo-layout .mdl-layout__header .mdl-layout__drawer-button {
   color: rgba(0, 0, 0, 0.54);
 }
 
@@ -51,7 +51,7 @@ html, body {
     margin-top: 3rem;
 }
 
-.theme1-layout .collections-main > button {
+.demo-layout .collections-main > button {
   position: absolute;
   top: 0;
   right: 28px;
@@ -59,22 +59,22 @@ html, body {
           transform: translate(0px, -28px);
 }
 
-.theme1-drawer {
+.demo-drawer {
   border: none;
 }
 /* iOS Safari specific workaround */
-.theme1-drawer .mdl-menu__container {
+.demo-drawer .mdl-menu__container {
   z-index: -1;
 }
-.theme1-drawer .theme1-navigation {
+.demo-drawer .demo-navigation {
   z-index: -2;
 }
 /* END iOS Safari specific workaround */
-.theme1-drawer .mdl-menu .mdl-menu__item {
+.demo-drawer .mdl-menu .mdl-menu__item {
   display: flex;
   align-items: center;
 }
-.theme1-drawer-header {
+.demo-drawer-header {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@ html, body {
   padding: 16px;
   /* height: 151px; */
 }
-.theme1-avatar-dropdown {
+.demo-avatar-dropdown {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -90,12 +90,12 @@ html, body {
   width: 100%;
 }
 
-.theme1-navigation {
+.demo-navigation {
   flex-grow: 1;
 }
 
 
-.theme1-layout .theme1-navigation .mdl-navigation__link {
+.demo-layout .demo-navigation .mdl-navigation__link {
   display: flex !important;
   flex-direction: row;
   align-items: center;
@@ -103,50 +103,50 @@ html, body {
   font-weight: 500;
 }
 
-.theme1-layout .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current .material-icons,
-.theme1-layout .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
+.demo-layout .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current .material-icons,
+.demo-layout .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
   color: #424242 !important;
   background-color: #eee !important;
 }
 
 
 
-.theme1-layout .theme1-navigation .mdl-navigation__link:hover,
-.theme1-navigation .mdl-navigation__link:hover .material-icons {
+.demo-layout .demo-navigation .mdl-navigation__link:hover,
+.demo-navigation .mdl-navigation__link:hover .material-icons {
   background-color: #eee !important;
   color: #424242 !important;
 }
 
-.theme1-navigation .mdl-navigation__link .material-icons {
+.demo-navigation .mdl-navigation__link .material-icons {
   font-size: 24px;
   color: #eee !important;
   margin-right: 32px;
 }
 
-.theme1-navigation .mdl-navigation__link .material-icons .mdl-navigation__link--current  {
+.demo-navigation .mdl-navigation__link .material-icons .mdl-navigation__link--current  {
   color: #424242 !important;
 }
 
-.theme1-content {
+.demo-content {
   max-width: 1080px;
 }
 
-.theme1-charts {
+.demo-charts {
   align-items: center;
 }
-.theme1-chart:nth-child(1) {
+.demo-chart:nth-child(1) {
   color: #ACEC00;
 }
-.theme1-chart:nth-child(2) {
+.demo-chart:nth-child(2) {
   color: #00BBD6;
 }
-.theme1-chart:nth-child(3) {
+.demo-chart:nth-child(3) {
   color: #BA65C9;
 }
-.theme1-chart:nth-child(4) {
+.demo-chart:nth-child(4) {
   color: #EF3C79;
 }
-.theme1-graphs {
+.demo-graphs {
   padding: 16px 32px;
   display: flex;
   flex-direction: column;
@@ -156,72 +156,72 @@ html, body {
  * not float around outside their container in IE10/11.
  * Using a browserhacks.com solution for now.
  */
-_:-ms-input-placeholder, :root .theme1-graphs {
+_:-ms-input-placeholder, :root .demo-graphs {
   min-height: 664px;
 }
-_:-ms-input-placeholder, :root .theme1-graph {
+_:-ms-input-placeholder, :root .demo-graph {
   max-height: 300px;
 }
 /* TODO end */
-.theme1-graph:nth-child(1) {
+.demo-graph:nth-child(1) {
   color: #00b9d8;
 }
-.theme1-graph:nth-child(2) {
+.demo-graph:nth-child(2) {
   color: #d9006e;
 }
 
-.theme1-cards {
+.demo-cards {
   align-items: flex-start;
   align-content: flex-start;
 }
-.theme1-cards .theme1-separator {
+.demo-cards .demo-separator {
   height: 32px;
 }
-.theme1-cards .mdl-card__title.mdl-card__title {
+.demo-cards .mdl-card__title.mdl-card__title {
   color: white;
   font-size: 24px;
   font-weight: 400;
 }
-.theme1-cards ul {
+.demo-cards ul {
   padding: 0;
 }
 
-.theme1-cards h3 {
+.demo-cards h3 {
   font-size: 1em;
 }
 
-.theme1-updates .mdl-card__title {
+.demo-updates .mdl-card__title {
   min-height: 200px;
   background-image: url('images/dog.png');
   background-position: 90% 100%;
   background-repeat: no-repeat;
 }
 
-.theme1-cards .mdl-card__actions a {
+.demo-cards .mdl-card__actions a {
   color: #00BCD4;
   text-decoration: none;
 }
 
-.theme1-options h3 {
+.demo-options h3 {
   margin: 0;
 }
-.theme1-options .mdl-checkbox__box-outline {
+.demo-options .mdl-checkbox__box-outline {
   border-color: rgba(255, 255, 255, 0.89);
 }
-.theme1-options ul {
+.demo-options ul {
   margin: 0;
   list-style-type: none;
 }
 
-.theme1-options li {
+.demo-options li {
   margin: 4px 0;
 }
 
-.theme1-options .material-icons {
+.demo-options .material-icons {
   color: rgba(255, 255, 255, 0.89);
 }
 
-.theme1-options .mdl-card__actions {
+.demo-options .mdl-card__actions {
   height: 64px;
   display: flex;
   box-sizing: border-box;

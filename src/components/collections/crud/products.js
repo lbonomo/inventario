@@ -1,20 +1,39 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import firebaseConfig from '../../firebaseConfig'
+import firebaseConfig from '../../../firebaseConfig'
+// Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
+import NativeSelect from '@material-ui/core/NativeSelect';
+// import Button from '@material-ui/core/Button';
+// import Container from '@material-ui/core/Container';
+// import FormControl from '@material-ui/core/FormControl';
 
-const ProviderCRUD = () => {
+
+const useStyles = makeStyles((theme) => ({
+  textField: {
+    // margin: '0 auto',
+    width:'100%',
+  },
+}));
+
+const ProductCRUD = () => {
+  const classes = useStyles();
   const history = useHistory();
   // if (show) { var dialog = document.querySelector('dialog'); // dialog.showModal(); }
 
   const db = firebaseConfig.firestore()
 
   // Creo el state del proveedor
-  const [provider, setProvider] = useState({
+  const [product, setProduct] = useState({
     name: '',
   })
 
-  const addProvider = async (dataProvider) => {
-    await db.collection('providers').doc().set(dataProvider)
+  const addProduct = async (dataProduct) => {
+    await db.collection('products').doc().set(dataProduct)
     console.log('Listo!');
   }
 
@@ -33,23 +52,23 @@ const ProviderCRUD = () => {
     }
     setError(false) // Reseteo el valor error
 
-    setProvider({ name:'' })
+    setProduct({ name:'' })
     // Paso los datos al componente padre para guardarlos
-    addProvider(provider)
+    addProduct(product)
 
 
     // TODO - Hiden loading
 
     // Go tabla
-    history.push("/providers");
+    history.push("/products");
   }
 
   // Se ejecuanta cuando el usuario escribe en el input
   const handleChange = (e) => {
     // Usamos destructuring para escribir el state
-    setProvider({ ...provider, [e.target.name]:e.target.value })
+    setProduct({ ...product, [e.target.name]:e.target.value })
   }
-  const { name } = provider
+  const { name } = product
 
   return (
     <React.Fragment>
@@ -57,23 +76,34 @@ const ProviderCRUD = () => {
       { error ? <p className="form-error">Todos los campos son obligatorios</p> : null }
 
       <div className="mdl-layout__header-row">
-        <span className="mdl-layout-title">Nuevo proveedor</span>
+        {/*<span className="mdl-layout-title">Nuevo producto</span>*/}
       </div>
 
       <form onSubmit={handleSubmit}>
         <div className="container mdl-grid">
           <div className="mdl-cell mdl-cell--12-col">
             <div className="mdl-textfield fullwidth">
-              <input
-                className="mdl-textfield__input"
-                placeholder="Proveedor"
+              <TextField
+                className={classes.textField}
+                label="Nombre del producto"
                 type="text"
                 id="name"
                 name="name"
                 onChange={handleChange}
                 value={name}
+                required
                 />
             </div>
+          </div>
+          <div className="mdl-cell mdl-cell--12-col">
+            <label>Provedores</label>
+
+            <div className="mdl-textfield fullwidth">
+
+            </div>
+
+
+
           </div>
         </div>
 
@@ -85,9 +115,10 @@ const ProviderCRUD = () => {
             </button>
           </div>
         </div>
+
       </form>
     </React.Fragment>
   )
 }
 
-export default ProviderCRUD
+export default ProductCRUD

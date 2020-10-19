@@ -10,22 +10,32 @@ const Sidebar = () => {
 
     let hashPath = window.location.hash;
 
+    const hiddenSidebar = () => {
+      // TODO - Resolver los problemas con MDL o implementar Material UI
+      let sidebar = document.getElementById('sidebar')
+      if ( sidebar.classList.contains('is-visible') ) {
+        sidebar.classList.remove('is-visible')
+      }
+    }
 
     return (
-      <div className="theme1-drawer mdl-layout__drawer mdl-color--grey-900 mdl-color-text--grey-50">
-        <header className="theme1-drawer-header">
-          <div className="theme1-avatar-dropdown">
+      <div className="demo-drawer mdl-layout__drawer mdl-color--grey-900 mdl-color-text--grey-50"
+         id="sidebar" aria-hidden="true" onFocus={() => hiddenSidebar() }>
+        <header className="demo-drawer-header">
+          <div className="demo-avatar-dropdown">
             <span>{ user.email }</span>
           </div>
         </header>
-        <nav className="theme1-navigation mdl-navigation mdl-color--grey-800">
+        <nav className="demo-navigation mdl-navigation mdl-color--grey-800">
 
+          {/*
           <NavLink exact to="/"
             className={`mdl-navigation__link ${ (hashPath === '#/') && 'mdl-navigation__link--current' }`}
             >
             <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>
             Tablero
           </NavLink>
+          */}
 
           <NavLink exact to="/deposit"
             className={`mdl-navigation__link ${ (hashPath.match('#/deposit/*') ) && 'mdl-navigation__link--current' }`}
@@ -48,10 +58,16 @@ const Sidebar = () => {
             Proveedores
           </NavLink>
 
-          {/* TODO - Leer la URL de un archivo de configuración */}
+          <NavLink exact to="/scanner"
+            className={`mdl-navigation__link ${ ( hashPath.match('#/scanner/*') ) && 'mdl-navigation__link--current' }`}
+            >
+            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">qr_code_scanner</i>
+            Scanner
+          </NavLink>
+
           <a className="mdl-navigation__link" target="_blank" rel="noopener noreferrer" href="https://console.firebase.google.com/u/1/project/gatti-inventrio/overview">
             <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation" >build</i>
-              Panel de control
+            Backend
           </a>
 
           {/*
@@ -62,6 +78,7 @@ const Sidebar = () => {
             <a className="mdl-navigation__link" href=""><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
           */}
           <div className="mdl-layout-spacer"></div>
+          {/* TODO - Leer la URL de un archivo de configuración */}
           <NavLink exact to="/logout" className="mdl-navigation__link"><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">close</i>Salir</NavLink>
         </nav>
       </div>

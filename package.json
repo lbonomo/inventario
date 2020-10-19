@@ -4,17 +4,20 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@react-firebase/auth": "^0.2.10",
     "@react-firebase/database": "^0.3.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "dialog-polyfill": "^0.5.3",
-    "firebase": "^7.17.1",
+    "firebase": "^7.24.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-qr-reader": "^2.2.1",
+    "react-qr-scanner": "^0.0.10",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",

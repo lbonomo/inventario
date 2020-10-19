@@ -4,17 +4,16 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 
 
 import "../../css/style.css"
-import SubHeader from "../SubHeader"
-import ProviderList from "../list/provider"
-import ProviderCRUD from "../crud/provider"
+import CollectionBar from "../CollectionBar"
+import ProviderList from "./list/provider"
+import ProviderCRUD from "./crud/provider"
 
 function Providers({mensaje}) {
 
   return (
     <React.Fragment>
       <div className="mdl-card collections-main mdl-cell mdl-cell--12-col">
-
-        <SubHeader />
+        <CollectionBar colection='providers'/>
 
         <HashRouter>
           <Switch>

@@ -14,3 +14,12 @@
 .row .spacer {
   width: 100%;
 }
+
+
+.up-item-icon {
+  margin: 0 1rem auto;
+}
+
+.product .mdl-chip {
+  margin: 1rem 1rem 0 0;
+}
