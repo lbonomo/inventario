@@ -2,8 +2,8 @@ import React from 'react'
 import { HashRouter, Route, Switch } from "react-router-dom";
 
 import CollectionBar from "../CollectionBar"
-import DepositListList from "./list/deposit"
-import DepositListCRUD from "./crud/deposit"
+import DepositList from "./list/deposit"
+import DepositCRUD from "./crud/deposit"
 
 function Deposit({mensaje}) {
     return (
@@ -15,12 +15,12 @@ function Deposit({mensaje}) {
 
             <HashRouter>
               <Switch>
-                <Route exact path="/deposit" component={DepositListList} />
+                <Route exact path="/deposit" component={DepositList} />
                 {/*
                   TODO - Ver de mejorar la definicion de las rutas
                   actualmente es necesario definirlas en App.js y views/Default.js
                    */}
-                <Route exact path="/deposit/add" component={ DepositListCRUD } />
+                <Route exact path="/deposit/add" component={ DepositCRUD } />
               </Switch>
             </HashRouter>
 

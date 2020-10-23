@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
+
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -11,15 +12,16 @@ import TextField from '@material-ui/core/TextField';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-// import Container from '@material-ui/core/Container';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
-import SearchIcon from '@material-ui/icons/Search';
-
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-// import DateFnsUtils from '@date-io/date-fns';
+
+// Propios
+import SearchProduct from '../../SearchProduct'
+import SearchProvider from '../../SearchProvider'
+
 
 // Estilos
 const useStyles = makeStyles(() => ({
@@ -45,31 +47,32 @@ const useStyles = makeStyles(() => ({
     fontSize: "1rem",
     borderRadius: 0,
   },
+
   crudActions: {
     textAlign: "right"
   },
+
   textField: {
     margin: '1rem',
     width: 450,
   },
+
   textFieldSmall: {
     margin: '1rem',
     width: 300,
   }
-  // "mdl-cell mdl-cell--2-col crud-action">
 
 }));
 
-const DepositListCRUD = () => {
+const DepositCRUD = () => {
   const classes = useStyles();
   const history = useHistory();
-  // if (show) { var dialog = document.querySelector('dialog'); // dialog.showModal(); }
 
   const db = firebaseConfig.firestore()
 
   // Creo el state del proveedor
   const [item, setItem] = useState({})
-  const [product, setProduct] = useState()
+  const [product, setProduct] = useState('')
   const [disabled, setDisabled] = useState(true)
 
   const addProduct = async (dataProduct) => {
@@ -109,26 +112,6 @@ const DepositListCRUD = () => {
     setItem({ ...item, [e.target.name]:e.target.value })
   }
 
-  const handleSearch = (e) => {
-      setProduct(e.target.value)
-      OnSearch()
-      console.log("Enabled elementes")
-  }
-
-
-  const setFocus = ()  => {
-    document.getElementById('searchProduct').focus()
-  }
-
-  const OnSearch = () => {
-    setDisabled(false)
-  }
-
-  useEffect( () => {
-    // Fijo el foco en el primer compnentes
-    setFocus(); // eslint-disable-next-line
-  },[])
-
   return (
     <Container className={classes.container}>
 
@@ -136,36 +119,14 @@ const DepositListCRUD = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="container mdl-grid">
-          <Grid container justify="space-around" >
+          <Grid container justify="space-around">
             {/* Search product */}
-            <FormControl className={classes.textField}>
-              <InputLabel shrink id="demo-customized-select-label">Produdcto</InputLabel>
-              <Input
-                required
-                type="text"
-                id="searchProduct"
-                name="searchProduct"
-                onChange={handleSearch}
-                value={product}
-                endAdornment={ <InputAdornment position="end"><SearchIcon /></InputAdornment>}
-              />
+            <FormControl id="fcProduct" className={classes.textField} fullWidth>
+              <SearchProduct item={item} setItem={setItem} setDisabled={setDisabled}/>
             </FormControl>
 
-            {/* Search product */}
             <FormControl id="fcProvider" className={classes.textField} disabled={disabled} fullWidth>
-              <InputLabel shrink id="demo-customized-select-label">Proveedor</InputLabel>
-              <NativeSelect
-                id="provider"
-                name="provider"
-                onChange={handleChange}
-                value={item.provider}
-                required
-                >
-                  <option aria-label="None" value="" />
-                  <option value={10}>Ten</option>
-                  <option value={20}>Twenty</option>
-                  <option value={30}>Thirty</option>
-              </NativeSelect>
+              <SearchProvider disabled={disabled} item={item} setItem={setItem}/>
             </FormControl>
           </Grid>
 
@@ -252,4 +213,4 @@ const DepositListCRUD = () => {
   )
 }
 
-export default DepositListCRUD
+export default DepositCRUD

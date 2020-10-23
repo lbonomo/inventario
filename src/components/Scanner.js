@@ -1,9 +1,10 @@
 import React, { Fragment, useContext, useState } from "react"
 import { NavLink } from "react-router-dom"
-import QrReader from 'react-qr-scanner'
-// import labelContext from '../context/labelContext';
+// import QrReader from 'react-qr-scanner'
+import QrReader from 'react-qr-reader'
 import Result from './Result'
 // Material UI
+// import labelContext from '../context/labelContext';
 import { makeStyles } from '@material-ui/core/styles';
 
 /* Verifico que el codigo leido sea el correcto */
