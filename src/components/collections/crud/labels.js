@@ -86,7 +86,7 @@ const LabelsCRUD = () => {
     e.preventDefault() // Prevent Default actin
     // setError(false) // Reseteo el valor error
     await saveItem()
-    history.push("/label");
+    history.push("/labels");
   }
 
   // Se ejecuanta cuando el usuario escribe en el input

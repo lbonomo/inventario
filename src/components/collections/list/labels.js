@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import firebaseConfig from '../../../firebaseConfig'
+import "../../../css/lists.css";
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,11 +11,18 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import PrintIcon from '@material-ui/icons/Print';
 import Link from '@material-ui/core/Link';
+import { DataGrid } from '@material-ui/data-grid';
+import Container from '@material-ui/core/Container';
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles({
-
+  container: {
+    marginTop: '4rem',
+    marginBottom: '2rem',
+    height: 400,
+    width: '100%'
+  },
   talbeContainer: {
     width: '95%',
     margin: '1rem auto',
@@ -36,6 +44,51 @@ const useStyles = makeStyles({
   }
 });
 
+
+const getName = (params: ValueGetterParams) => {
+  return params.getValue(params.field).name
+}
+
+
+const dateFormat = (params: ValueGetterParams) => {
+  const date = new Date(params.getValue(params.field))
+  if (!isNaN(date.getTime())) {
+      // Months use 0 index.
+      return `${("0"+date.getDate()).slice(-2)}/${date.getMonth()+1}/${date.getFullYear()}`
+  } else {
+    return '-'
+  }
+}
+const ActionsHeader = (params: ValueGetterParams) => {
+  return (<Icon className='actionsHeader'>visibility</Icon>)
+}
+
+const ActionsLinks = (params: ValueGetterParams) => {
+
+  // <Link href={`#/labels/print/${params.getValue('id')}`} target="_blank" rel="noopener noreferrer" color="inherit">
+  //   <Icon color="secondary">print</Icon>
+  // </Link>
+
+  return (
+    <spam>
+      <Link href={`#/labels/show/${params.getValue('id')}`} color="inherit">
+        <Icon className="actionLinks">visibility</Icon>
+      </Link>
+    </spam>
+  )
+}
+
+const columns = [
+  { field: 'product', headerName: 'Producto', valueGetter: getName, width: 250, sortable: false },
+  { field: 'provider', headerName: 'Proveedor', valueGetter: getName, width: 250, sortable: false  },
+  { field: 'dateIn', headerName: 'Ingreso', type: 'date', valueFormatter: dateFormat },
+  { field: 'dateExpiration', headerName: 'Expira', type: 'date', valueFormatter: dateFormat },
+  { field: 'kg', headerName: 'Kg', width: 75, type: 'number', sortable: false },
+  { field: 'lote', headerName: 'Lote', width: 75, sortable: false },
+  { field: 'set', headerName: 'Set', width: 75, sortable: false },
+  { field: 'actions', headerName: 'Acciones', renderHeader: ActionsHeader, renderCell: ActionsLinks, width: 75, sortable: false },
+]
+
 function LabelsList() {
 
   const [items, setItems] = useState([])
@@ -54,7 +107,12 @@ function LabelsList() {
           const docs = []
           querySnapshot.forEach( (doc, i) => {
             let data = doc.data()
-            docs.push({ id: doc.id, ...data })
+            docs.push({
+              id: doc.id,
+              // productName: data.product.name,
+              // providerName: data.provider.name,
+              // print: `href:#/labels/print/${doc.id}`,
+              ...data })
           });
 
           setItems(docs)
@@ -72,54 +130,13 @@ function LabelsList() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-
-      <div className="mdl-layout__header-row">
-        {/* <span className="mdl-layout-title">Lista de productos</span> */}
+    <Container className='container'>
+      <div style={{ display: 'flex', height: '100%' }}>
+        <div style={{ flexGrow: 1 }}>
+          <DataGrid rows={ items } columns={columns} pageSize={5} />
+        </div>
       </div>
-
-      <div className="container mdl-grid">
-
-        <TableContainer component={Paper} className={classes.talbeContainer}>
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">Producto</TableCell>
-                    <TableCell align="center">Proveedor</TableCell>
-                    <TableCell align="center">Ingreso</TableCell>
-                    <TableCell align="center">Expira</TableCell>
-                    <TableCell align="center">Kg</TableCell>
-                    <TableCell align="center">Lote</TableCell>
-                    <TableCell align="center">Set</TableCell>
-                    <TableCell align="center" className={classes.actions}></TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {items.map(item => (
-                    <TableRow key={item.id} className={classes.hideLastBorder}>
-                      <TableCell align="center">
-                        <Link href={`#/labels/show/${item.id}`} color="inherit">{item.product.name}</Link>
-                      </TableCell>
-                      <TableCell align="center">{item.provider.name}</TableCell>
-                      <TableCell align="center">{item.dateIn}</TableCell>
-                      <TableCell align="center">{item.dateExpiration}</TableCell>
-                      <TableCell align="center">{item.kg}</TableCell>
-                      <TableCell align="center">{item.lote}</TableCell>
-                      <TableCell align="center">{item.set}</TableCell>
-                      <TableCell align="center" className={classes.actionsCell}>
-                        <Link href={`#/labels/print/${item.id}`} target="_blank" rel="noopener noreferrer" color="inherit">
-                          <PrintIcon />
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-
-      </div>
-
-    </React.Fragment>
+    </Container>
   )
 }
 

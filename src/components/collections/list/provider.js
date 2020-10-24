@@ -3,28 +3,17 @@ import { NavLink } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
 
 // Material UI
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { DataGrid } from '@material-ui/data-grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 
 const columns = [
-  { field: 'name', headerName: 'Nombre' },
+  { field: 'name', headerName: 'Nombre', width: 300 },
 ]
 
-const useStyles = makeStyles(() => ({
-  container: {
-    marginTop: '3rem',
-    marginBottom: '2rem',
-    height: 400,
-    width: '100%'
-  }
-}));
 
 function ProviderList() {
-
-  const classes = useStyles()
 
   const [providers, setProviders] = useState([])
   const field = "name";
@@ -55,7 +44,7 @@ function ProviderList() {
   },[])
 
   return (
-    <Container className={classes.container}>
+    <Container className='container'>
       <DataGrid rows={ providers } columns={columns} pageSize={5} />
     </Container>
   )

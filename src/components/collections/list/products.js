@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
+import "../../../css/lists.css";
 
 // Material UI
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { DataGrid } from '@material-ui/data-grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 
 const columns = [
-  { field: 'name', headerName: 'Nombre' },
+  { field: 'name', headerName: 'Nombre', width: 300},
 ]
 
-const useStyles = makeStyles(() => ({
-  container: {
-    marginTop: '3rem',
-    marginBottom: '2rem',
-    height: 400,
-    width: '100%'
-  }
-}));
 
 function ProductList() {
-
-  const classes = useStyles()
-
   const [products, setProducts] = useState([])
   const field = "name";
   const db = firebaseConfig.firestore()
@@ -55,7 +44,7 @@ function ProductList() {
 
 
   return (
-    <Container className={classes.container}>
+    <Container className='container'>
       <DataGrid rows={ products } columns={columns} pageSize={5} />
     </Container>
   )
