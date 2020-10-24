@@ -1,75 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
-import Pagination from '../../Pagination'
 import firebaseConfig from '../../../firebaseConfig'
+
+// Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import { DataGrid } from '@material-ui/data-grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Container from '@material-ui/core/Container';
+
+const columns = [
+  { field: 'name', headerName: 'Nombre' },
+]
+
+const useStyles = makeStyles(() => ({
+  container: {
+    marginTop: '3rem',
+    marginBottom: '2rem',
+    height: 400,
+    width: '100%'
+  }
+}));
 
 function ProviderList() {
 
+  const classes = useStyles()
+
   const [providers, setProviders] = useState([])
-  // Paginado
-  const [lastVisible, setLastVisible] = useState([])
-  const [firstVisible, setFirstVisible] = useState([])
-  const [first, setFirst] = useState([])
-  const [last, setLast] = useState([])
-  const limit = 5
   const field = "name";
 
   const db = firebaseConfig.firestore()
   const query = db.collection('providers').orderBy(field)
 
-  // Set values of first and last document (for pagination)
-  const Visibles = (docs) => {
-    setFirstVisible(docs[0])
-    setLastVisible(docs[docs.length-1])
-    isLast(docs[(docs.length - 1)])
-  }
-
-  // Set the last object in the collection (for pagination)
-  const isLast = (doc) => {
-    query.startAfter(doc[field]).limit(1).get().then(
-      r => { if ( r.size === 0 ) { setLast(doc)  } } )
-  }
-
-  // Execute when the user click ">" (for pagination)
-  const nextPage = () => {
-    query.startAfter(lastVisible[field]).limit(limit).onSnapshot(
-      (querySnapshot) => {
-        const docs = []
-        querySnapshot.forEach((doc, i) => {
-          docs.push({id:doc.id, ...doc.data()})
-        });
-        Visibles(docs)
-        setProviders(docs)
-      }
-    )
-  }
-
-  // Execute when the user click "<" (for pagination)
-  const prevPage = () => {
-    query.endBefore(firstVisible[field]).limitToLast(limit).onSnapshot(
-      (querySnapshot) => {
-        const docs = []
-        querySnapshot.forEach((doc, i) => {
-          docs.push({id:doc.id, ...doc.data()})
-        });
-        Visibles(docs)
-        setProviders(docs)
-      }
-    )
-  }
-
   // Get the firsts documments in collection
   const getProviders = () => {
     // https://firebase.google.com/docs/firestore/query-data/order-limit-data
-    query.limit(limit).onSnapshot(
+    query.onSnapshot(
       (querySnapshot) => {
         if (querySnapshot.size !== 0) {
           const docs = []
           querySnapshot.forEach((doc, i) => {
             docs.push({id:doc.id, ...doc.data()})
           });
-          Visibles(docs)
-          setFirst(docs[0])
           setProviders(docs)
         }
       }
@@ -83,36 +55,9 @@ function ProviderList() {
   },[])
 
   return (
-    <React.Fragment>
-
-      <div className="mdl-layout__header-row">
-        <span className="mdl-layout-title">Lista de proveedores</span>
-      </div>
-
-      <div className="container mdl-grid">
-
-        <ul className="mdl-list full-width">
-          { providers.map(provider => (
-            <li className="mdl-list__item" key={provider.id}>
-                <span className="mdl-list__item-primary-content">
-                  <i className="material-icons mdl-list__item-icon">store</i>
-                  {provider.name}
-                </span>
-                <NavLink exact to={`/providers/edit/${provider.id}`} className="mdl-list__item-secondary-action">
-                  <i className="material-icons">edit</i>
-                </NavLink>
-            </li>
-          ))}
-        </ul>
-
-      </div>
-
-      <Pagination
-        prevPage = { ( first.id === firstVisible.id )  ?  null :  prevPage }
-        nextPage = { ( last.id === lastVisible.id ) ? null : nextPage }
-        />
-
-    </React.Fragment>
+    <Container className={classes.container}>
+      <DataGrid rows={ providers } columns={columns} pageSize={5} />
+    </Container>
   )
 }
 
