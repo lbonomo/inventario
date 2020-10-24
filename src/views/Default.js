@@ -14,7 +14,7 @@ import Dashboard from "../components/Dashboard"
 import Scanner from "../components/Scanner"
 
 // Collections
-import Deposit from "../components/collections/Deposit"
+import Labels from "../components/collections/Labels"
 import Products from "../components/collections/Products"
 import Providers from "../components/collections/Providers"
 
@@ -43,8 +43,9 @@ function Default({history}) {
             <HashRouter>
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="/deposit" component={Deposit} />
-                <Route exact path="/deposit/add" component={Deposit} />
+                <Route exact path="/labels" component={Labels} />
+                <Route exact path="/labels/add" component={Labels} />
+                <Route exact path="/labels/show/:id" component={Labels} />
                 <Route exact path="/products" component={Products} />
                 <Route exact path="/products/add" component={Products} />
                 <Route exact path="/providers" component={Providers} />

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import Pagination from '../../Pagination'
-import Chips from '../../Chips'
 import firebaseConfig from '../../../firebaseConfig'
 
 function ProductList() {
@@ -102,13 +101,11 @@ function ProductList() {
                   {product.name}
                 </span>
 
-                { ('providers' in product) ? <Chips references = {product.providers} /> : null }
-
               </div>
+
               <NavLink exact to={`/products/edit/${product.id}`} className="mdl-list__item-secondary-action up-item-icon">
                 <i className="material-icons">edit</i>
               </NavLink>
-
 
             </li>
           ))}

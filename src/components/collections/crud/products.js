@@ -3,20 +3,19 @@ import { useHistory } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-import NativeSelect from '@material-ui/core/NativeSelect';
-// import Button from '@material-ui/core/Button';
-// import Container from '@material-ui/core/Container';
-// import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 const useStyles = makeStyles((theme) => ({
   textField: {
     // margin: '0 auto',
     width:'100%',
+  },
+  button: {
+    fontSize: "1rem",
+    borderRadius: 0,
   },
 }));
 
@@ -95,24 +94,21 @@ const ProductCRUD = () => {
                 />
             </div>
           </div>
-          <div className="mdl-cell mdl-cell--12-col">
-            <label>Provedores</label>
-
-            <div className="mdl-textfield fullwidth">
-
-            </div>
-
-
-
-          </div>
         </div>
 
         <div className="container mdl-grid">
           <div className="mdl-layout-spacer"></div>
           <div className="mdl-cell mdl-cell--2-col">
-            <button id="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+            <Button
+              id="submit"
+              type="submit"
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<SaveIcon />}
+              >
               Grabar
-            </button>
+            </Button>
           </div>
         </div>
 

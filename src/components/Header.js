@@ -6,12 +6,12 @@ const Header = (name) => {
   // ???
   switch (true) {
 
-    case RegExp('#/deposit/add').test(window.location.hash):
-      title='Nuevo item'
+    case RegExp('#/labels/add').test(window.location.hash):
+      title='Nueva etiqueta'
       break;
 
-    case RegExp('#/deposit').test(window.location.hash):
-      title='Deposito'
+    case RegExp('#/labels').test(window.location.hash):
+      title='Etiquetas'
       break;
 
     case RegExp('#/products/add').test(window.location.hash):

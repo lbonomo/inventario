@@ -37,11 +37,11 @@ const Sidebar = () => {
           </NavLink>
           */}
 
-          <NavLink exact to="/deposit"
-            className={`mdl-navigation__link ${ (hashPath.match('#/deposit/*') ) && 'mdl-navigation__link--current' }`}
+          <NavLink exact to="/labels"
+            className={`mdl-navigation__link ${ (hashPath.match('#/labels/*') ) && 'mdl-navigation__link--current' }`}
             >
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">assignment</i>
-            Deposito
+            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">label</i>
+            Etiquetas
           </NavLink>
 
           <NavLink exact to="/products"

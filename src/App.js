@@ -9,12 +9,14 @@ import SignUp from "./views/SignUp";
 import LostPassword from "./views/LostPassword";
 import Error from "./views/Error";
 
+// Label
+import LablePrint from './components/collections/print/label'
+
 // Context
 import AuthContext  from "./context/AuthContext";
 
 
 function App() {
-
 
   return (
     <div className="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -22,14 +24,15 @@ function App() {
         <HashRouter>
           <Switch>
             <Route exact path="/" component={Default} />
-            <Route exact path="/deposit" component={Default} />
-            <Route exact path="/deposit/add" component={Default} />
+            <Route exact path="/labels" component={Default} />
+            <Route exact path="/labels/add" component={Default} />
+            <Route exact path="/labels/show/:id" component={Default} />
+            <Route exact path="/labels/print/:id" component={LablePrint} />
             <Route exact path="/products" component={Default} />
             <Route exact path="/products/add" component={Default} />
             <Route exact path="/providers" component={Default} />
             <Route exact path="/providers/add" component={Default} />
             <Route exact path="/scanner" component={Default} />
-
             <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Logout} />
             <Route exact path="/signup" component={SignUp} />

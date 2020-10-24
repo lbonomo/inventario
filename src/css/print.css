@@ -1,0 +1,48 @@
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.no-print, .no-print * {
+  display: none !important;
+}
+
+.to-print {
+  display: flex;
+  justify-content: center;
+}
+
+.label-100x150 {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  margin: 1.5mm 3mm;
+  border-radius: 1mm;
+  width: 100mm;
+  height: 150mm;
+  border: 1px gray dotted;
+}
+
+.label-data {
+  margin: 1.5mm 3mm;
+  font-family: Arial;
+  font-size: 18px;
+}
+
+#qr {
+  width: 80mm;
+  margin: auto;
+  /* El borde es solo para el debug */
+  border: solid 1px gray;
+}

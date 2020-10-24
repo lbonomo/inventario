@@ -46,7 +46,7 @@ const SearchProduct = ({setDisabled, item, setItem}) => {
         id="searchProduct"
         name="searchProduct"
         onChange={ (event, value) => {
-          setItem({ ...item, 'product':value.id })
+          setItem({ ...item, 'product':{'id': value.id, 'name': value.name }})
           setDisabled(false)
         }}
         getOptionLabel={ (option) => option.name }

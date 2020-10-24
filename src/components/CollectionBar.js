@@ -16,19 +16,19 @@ function CollectionBar({colection}) {
       <React.Fragment>
           <button className="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent">
             {
-              ( window.location.hash === `#/${colection}/add`)
+              ( window.location.hash === `#/${colection}`)
               ?
+                <NavLink exact to={`/${colection}/add`}>
+                  <Fab color="secondary" aria-label="add" >
+                    <AddIcon />
+                  </Fab>
+                </NavLink>
+              :
                 <NavLink exact to={`/${colection}`}>
                   <Fab color="secondary" aria-label="add" >
                     <NavigateBeforeIcon />
                   </Fab>
                 </NavLink>
-            :
-              <NavLink exact to={`/${colection}/add`}>
-                <Fab color="secondary" aria-label="add" >
-                  <AddIcon />
-                </Fab>
-              </NavLink>
             }
           </button>
       </React.Fragment>

@@ -2,7 +2,21 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
 
+// Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+
+
+const useStyles = makeStyles(() => ({
+  button: {
+    fontSize: "1rem",
+    borderRadius: 0,
+  }
+}));
+
 const ProviderCRUD = () => {
+  const classes = useStyles();
   const history = useHistory();
   // if (show) { var dialog = document.querySelector('dialog'); // dialog.showModal(); }
 
@@ -13,9 +27,8 @@ const ProviderCRUD = () => {
     name: '',
   })
 
-  const addProvider = async (dataProvider) => {
-    await db.collection('providers').doc().set(dataProvider)
-    console.log('Listo!');
+  const addProvider = async () => {
+    await db.collection('providers').doc().set(provider)
   }
 
   // Estate error
@@ -35,7 +48,7 @@ const ProviderCRUD = () => {
 
     setProvider({ name:'' })
     // Paso los datos al componente padre para guardarlos
-    addProvider(provider)
+    addProvider()
 
 
     // TODO - Hiden loading
@@ -51,6 +64,8 @@ const ProviderCRUD = () => {
   }
   const { name } = provider
 
+
+
   return (
     <React.Fragment>
 
@@ -65,6 +80,7 @@ const ProviderCRUD = () => {
           <div className="mdl-cell mdl-cell--12-col">
             <div className="mdl-textfield fullwidth">
               <input
+                required
                 className="mdl-textfield__input"
                 placeholder="Proveedor"
                 type="text"
@@ -80,9 +96,17 @@ const ProviderCRUD = () => {
         <div className="container mdl-grid">
           <div className="mdl-layout-spacer"></div>
           <div className="mdl-cell mdl-cell--2-col">
-            <button id="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+            <Button
+              id="submit"
+              type="submit"
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<SaveIcon />}
+              >
               Grabar
-            </button>
+            </Button>
+
           </div>
         </div>
       </form>

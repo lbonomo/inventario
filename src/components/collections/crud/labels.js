@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputBase from '@material-ui/core/InputBase';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -38,11 +31,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row-reverse'
   },
 
-  textField: {
-    // margin: '0 auto',
-    width:'100%',
-  },
-
   button: {
     fontSize: "1rem",
     borderRadius: 0,
@@ -64,7 +52,7 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-const DepositCRUD = () => {
+const LabelsCRUD = () => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -72,38 +60,33 @@ const DepositCRUD = () => {
 
   // Creo el state del proveedor
   const [item, setItem] = useState({})
-  const [product, setProduct] = useState('')
+  // const [product, setProduct] = useState('')
   const [disabled, setDisabled] = useState(true)
 
-  const addProduct = async (dataProduct) => {
-    await db.collection('products').doc().set(dataProduct)
-    console.log('Listo!');
+  // Estate error
+  // const [error, setError ] = useState(false)
+
+  const saveItem = async() => {
+    console.log('Guardando...')
+    await db.collection('store').doc().set(
+      {
+        'product': item.product,
+        'provider': item.provider,
+        'dateIn': item.dateIn,
+        'dateExpiration': item.dateExpiration,
+        'kg': item.kg,
+        'lote': item.lote,
+        'set': item.set,
+      }
+    )
   }
 
-  // Estate error
-  const [error, setError ] = useState(false)
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
+    console.log("Submit...")
     e.preventDefault() // Prevent Default actin
-
-    // TODO - Show loading
-
-    // Validamos que el campo no este vacio.
-    // if (name.trim() === '') {
-    //   setError(true)
-    //   return
-    // }
-    setError(false) // Reseteo el valor error
-
-    setItem({ name:'' })
-    // Paso los datos al componente padre para guardarlos
-    addProduct(product)
-
-
-    // TODO - Hiden loading
-
-    // Go tabla
-    history.push("/products");
+    // setError(false) // Reseteo el valor error
+    await saveItem()
+    history.push("/label");
   }
 
   // Se ejecuanta cuando el usuario escribe en el input
@@ -115,8 +98,6 @@ const DepositCRUD = () => {
   return (
     <Container className={classes.container}>
 
-      { error ? <p className="form-error">Todos los campos son obligatorios</p> : null }
-
       <form onSubmit={handleSubmit}>
         <div className="container mdl-grid">
           <Grid container justify="space-around">
@@ -126,7 +107,7 @@ const DepositCRUD = () => {
             </FormControl>
 
             <FormControl id="fcProvider" className={classes.textField} disabled={disabled} fullWidth>
-              <SearchProvider disabled={disabled} item={item} setItem={setItem}/>
+              <SearchProvider item={item} setItem={setItem} disabled={disabled}/>
             </FormControl>
           </Grid>
 
@@ -198,6 +179,7 @@ const DepositCRUD = () => {
         <Grid container className={classes.submitRow}>
             <Button
               id="submit"
+              type="submit"
               variant="contained"
               color="secondary"
               className={classes.button}
@@ -213,4 +195,4 @@ const DepositCRUD = () => {
   )
 }
 
-export default DepositCRUD
+export default LabelsCRUD

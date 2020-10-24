@@ -7,7 +7,6 @@ const SearchProvider = ({ disabled, item, setItem }) => {
 
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const [provider, setProvider] = useState('');
 
   const getProviders = () => {
     // const getOptions = { source: 'cache' };
@@ -40,7 +39,9 @@ const SearchProvider = ({ disabled, item, setItem }) => {
         disableClearable
         id="provider"
         name="provider"
-        onChange={ (event, value) => { setItem({ ...item, 'provider':value.id }) }}
+        onChange={ (event, value) => {
+          setItem({ ...item, 'provider':{'id': value.id, 'name': value.name } }) 
+        }}
         getOptionLabel={ (option) => option.name }
         options={options}
         inputValue={inputValue}
