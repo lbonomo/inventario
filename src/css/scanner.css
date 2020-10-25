@@ -1,0 +1,63 @@
+.header h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  margin: 1rem;
+}
+
+.scanner {
+  margin: 3rem auto 1rem;
+  width: 100%;
+}
+
+.footer .MuiFab-root {
+  margin: 1rem;
+}
+
+.product {
+  margin: 0.5rem ;
+  font-weight: 500;
+  text-align: center;
+}
+
+.provider {
+  margin-bottom: 1rem ;
+  font-weight: 300;
+  text-align: center;
+}
+
+.cardRow {
+  margin-bottom: 2rem !important;
+}
+
+.cardItem {
+  text-align: center;
+}
+
+.cardLabel {
+  font-size: 1.2rem;
+  font-weight: 150;
+}
+
+.cardData {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.cardDataSmall {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+
+#take {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+#back {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}

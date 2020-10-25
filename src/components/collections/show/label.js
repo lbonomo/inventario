@@ -5,13 +5,6 @@ import firebaseConfig from '../../../firebaseConfig'
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import LabelIcon from '@material-ui/icons/Label';
-import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from '@material-ui/core/Card';
@@ -74,10 +67,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function LableShow() {
+function LabelShow() {
   const { id } = useParams()
   const classes = useStyles()
-  const [label, setLable] = useState({})
+  const [label, setLabel] = useState({})
   const db = firebaseConfig.firestore()
 
   const getLabel = async() => {
@@ -85,13 +78,12 @@ function LableShow() {
     query.onSnapshot( (querySnapshot) => {
       console.log( querySnapshot.data() )
       let data = querySnapshot.data()
-      setLable( data )
-      // setLable( { 'kg': data.kg} )
+      setLabel( data )
     })
   }
 
   useEffect( () => {
-    getLabel(); // eslint-disable-next-line
+    getLabel() // eslint-disable-next-line
   },[])
 
   return (
@@ -156,4 +148,4 @@ function LableShow() {
   )
 }
 
-export default LableShow
+export default LabelShow

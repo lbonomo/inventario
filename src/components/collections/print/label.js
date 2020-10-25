@@ -18,7 +18,7 @@ function LablePrint({mensaje}) {
   return (
       <div className="to-print">
         <div className="label-100x150">
-          <img id="qr" src={url} onLoad={handleOnLoad} />
+          <img alt="QR Code" id="qr" src={url} onLoad={handleOnLoad} />
         </div>
       </div>
   )

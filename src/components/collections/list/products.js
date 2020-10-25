@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
 import "../../../css/lists.css";
 
 // Material UI
-import Grid from '@material-ui/core/Grid';
 import { DataGrid } from '@material-ui/data-grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 
 const columns = [

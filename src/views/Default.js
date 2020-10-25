@@ -11,7 +11,6 @@ import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
 
 import Dashboard from "../components/Dashboard"
-import Scanner from "../components/Scanner"
 
 // Collections
 import Labels from "../components/collections/Labels"
@@ -50,7 +49,6 @@ function Default({history}) {
                 <Route exact path="/products/add" component={Products} />
                 <Route exact path="/providers" component={Providers} />
                 <Route exact path="/providers/add" component={Providers} />
-                <Route exact path="/scanner" component={Scanner} />
               </Switch>
             </HashRouter>
           </div>

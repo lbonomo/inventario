@@ -3,52 +3,14 @@ import firebaseConfig from '../../../firebaseConfig'
 import "../../../css/lists.css";
 
 // Material UI
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import { DataGrid } from '@material-ui/data-grid';
 import Container from '@material-ui/core/Container';
 import Icon from '@material-ui/core/Icon';
 
-const useStyles = makeStyles({
-  container: {
-    marginTop: '4rem',
-    marginBottom: '2rem',
-    height: 400,
-    width: '100%'
-  },
-  talbeContainer: {
-    width: '95%',
-    margin: '1rem auto',
-  },
-
-  table: {
-    minWidth: 650,
-    },
-
-  hideLastBorder: {
-    '&:last-child td, &:last-child th': {
-      border: 0,
-    },
-  },
-
-  actionsCell: {
-    paddingLeft: '0',
-    paddingRight: '0',
-  }
-});
-
-
 const getName = (params: ValueGetterParams) => {
   return params.getValue(params.field).name
 }
-
 
 const dateFormat = (params: ValueGetterParams) => {
   const date = new Date(params.getValue(params.field))
@@ -59,6 +21,7 @@ const dateFormat = (params: ValueGetterParams) => {
     return '-'
   }
 }
+
 const ActionsHeader = (params: ValueGetterParams) => {
   return (<Icon className='actionsHeader'>visibility</Icon>)
 }
@@ -107,14 +70,8 @@ function LabelsList() {
           const docs = []
           querySnapshot.forEach( (doc, i) => {
             let data = doc.data()
-            docs.push({
-              id: doc.id,
-              // productName: data.product.name,
-              // providerName: data.provider.name,
-              // print: `href:#/labels/print/${doc.id}`,
-              ...data })
+            docs.push({ id: doc.id, ...data })
           });
-
           setItems(docs)
         }
       }
@@ -127,15 +84,9 @@ function LabelsList() {
     getItems(); // eslint-disable-next-line
   },[])
 
-  const classes = useStyles();
-
   return (
     <Container className='container'>
-      <div style={{ display: 'flex', height: '100%' }}>
-        <div style={{ flexGrow: 1 }}>
-          <DataGrid rows={ items } columns={columns} pageSize={5} />
-        </div>
-      </div>
+      <DataGrid rows={ items } columns={columns} pageSize={5} />
     </Container>
   )
 }
