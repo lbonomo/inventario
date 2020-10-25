@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-// import QrReader from 'react-qr-scanner'
-import QrReader from 'react-qr-reader'
+import QrReader from 'react-qr-scanner'
+// import QrReader from 'react-qr-reader'
 
 import '../../css/scanner.css'
 

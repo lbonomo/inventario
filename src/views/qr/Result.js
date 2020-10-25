@@ -4,6 +4,7 @@ import firebaseConfig from '../../firebaseConfig'
 import Loading from '../../components/Loading'
 import '../../css/scanner.css'
 import Footer from './Footer'
+import { dateFormat } from '../../libs/date'
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -40,11 +41,11 @@ const Result = ( {id, reset} ) => {
                   <Grid container alignItems="center">
                     <Grid item xs={6} sm={6} className='cardItem'>
                       <label className='cardLabel' htmlFor='dateIn'>Ingreso</label>
-                      <div className='cardData' id='dateIn'>{ label.dateIn }</div>
+                      <div className='cardData' id='dateIn'>{ dateFormat(label.dateIn) }</div>
                     </Grid>
                     <Grid item xs={6} sm={6} className='cardItem'>
                       <label className='cardLabel' htmlFor='dateExpiration'>Expira</label>
-                      <div className='cardData' id='dateExpiration'>{ label.dateExpiration }</div>
+                      <div className='cardData' id='dateExpiration'>{ dateFormat(label.dateExpiration) }</div>
                     </Grid>
                   </Grid>
                 </Grid>

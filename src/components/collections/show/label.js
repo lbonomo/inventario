@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router";
 import firebaseConfig from '../../../firebaseConfig'
+import { dateFormat } from '../../../libs/date'
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -98,30 +99,30 @@ function LabelShow() {
 
             <Grid container>
               <Grid item xs={12} className={classes.cardRow}>
-                <Grid container justifyContent="center" alignItems="center">
+                <Grid container alignItems="center">
                   <Grid item xs={12} sm={6} className={classes.cardItem}>
-                    <label className={classes.cardLabel} for='dateIn'>Ingreso</label>
-                    <div className={classes.cardData} id='dateIn'>{ label.dateIn }</div>
+                    <label className={classes.cardLabel} htmlFor='dateIn'>Ingreso</label>
+                    <div className={classes.cardData} id='dateIn'>{ dateFormat(label.dateIn) }</div>
                   </Grid>
                   <Grid item xs={12} sm={6} className={classes.cardItem}>
-                    <label className={classes.cardLabel} for='dateExpiration'>Expira</label>
-                    <div className={classes.cardData} id='dateExpiration'>{ label.dateExpiration }</div>
+                    <label className={classes.cardLabel} htmlFor='dateExpiration'>Expira</label>
+                    <div className={classes.cardData} id='dateExpiration'>{ dateFormat(label.dateExpiration) }</div>
                   </Grid>
                 </Grid>
               </Grid>
 
               <Grid item xs={12} className={classes.cardRow}>
-                <Grid container justifyContent="center" alignItems="center">
+                <Grid container alignItems="center">
                   <Grid item xs={12} sm={4} className={classes.cardItem}>
-                    <label className={classes.cardLabel} for='kg'>Kg</label>
+                    <label className={classes.cardLabel} htmlFor='kg'>Kg</label>
                     <div className={classes.cardData} id='kg'>{ label.kg }</div>
                   </Grid>
                   <Grid item xs={12} sm={4} className={classes.cardItem}>
-                    <label className={classes.cardLabel} for='lote'>Lote</label>
+                    <label className={classes.cardLabel} htmlFor='lote'>Lote</label>
                     <div className={classes.cardData} id='lote'>{ label.lote }</div>
                   </Grid>
                   <Grid item xs={12} sm={4} className={classes.cardItem}>
-                    <label className={classes.cardLabel} for='set'>Set</label>
+                    <label className={classes.cardLabel} htmlFor='set'>Set</label>
                     <div className={classes.cardData} id='set'>{ label.set }</div>
                   </Grid>
                 </Grid>

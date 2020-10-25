@@ -51,7 +51,7 @@ html, body {
     margin-top: 3rem;
 }
 
-.demo-layout .collections-main > button {
+.demo-layout .collections-main > span {
   position: absolute;
   top: 0;
   right: 28px;

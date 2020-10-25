@@ -33,11 +33,11 @@ const ActionsLinks = (params: ValueGetterParams) => {
   // </Link>
 
   return (
-    <spam>
+    <span>
       <Link href={`#/labels/show/${params.getValue('id')}`} color="inherit">
         <Icon className="actionLinks">visibility</Icon>
       </Link>
-    </spam>
+    </span>
   )
 }
 

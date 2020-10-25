@@ -3,17 +3,13 @@ import { useHistory } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
 
 // Material UI
-import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
-
-const useStyles = makeStyles(() => ({
-  button: {
-    fontSize: "1rem",
-    borderRadius: 0,
-  }
-}));
+import useStyles from './style'
 
 const ProviderCRUD = () => {
   const classes = useStyles();
@@ -31,27 +27,12 @@ const ProviderCRUD = () => {
     await db.collection('providers').doc().set(provider)
   }
 
-  // Estate error
-  const [error, setError ] = useState(false)
-
   const handleSubmit = (e) => {
     e.preventDefault() // Prevent Default actin
-
-    // TODO - Show loading
-
-    // Validamos que el campo no este vacio.
-    if (name.trim() === '') {
-      setError(true)
-      return
-    }
-    setError(false) // Reseteo el valor error
 
     setProvider({ name:'' })
     // Paso los datos al componente padre para guardarlos
     addProvider()
-
-
-    // TODO - Hiden loading
 
     // Go tabla
     history.push("/providers");
@@ -67,50 +48,39 @@ const ProviderCRUD = () => {
 
 
   return (
-    <React.Fragment>
-
-      { error ? <p className="form-error">Todos los campos son obligatorios</p> : null }
-
-      <div className="mdl-layout__header-row">
-        <span className="mdl-layout-title">Nuevo proveedor</span>
-      </div>
+    <Container className={ classes.container }>
 
       <form onSubmit={handleSubmit}>
-        <div className="container mdl-grid">
-          <div className="mdl-cell mdl-cell--12-col">
-            <div className="mdl-textfield fullwidth">
-              <input
-                required
-                className="mdl-textfield__input"
-                placeholder="Proveedor"
-                type="text"
-                id="name"
-                name="name"
-                onChange={handleChange}
-                value={name}
-                />
-            </div>
-          </div>
-        </div>
+        <Grid container>
+          <Grid item xs={12} className={classes.formRow}>
+            <TextField
+              className={classes.textField}
+              label="Proveedor"
+              type="text"
+              id="name"
+              name="name"
+              onChange={handleChange}
+              value={name}
+              required
+              />
+            </Grid>
 
-        <div className="container mdl-grid">
-          <div className="mdl-layout-spacer"></div>
-          <div className="mdl-cell mdl-cell--2-col">
-            <Button
-              id="submit"
-              type="submit"
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              startIcon={<SaveIcon />}
-              >
-              Grabar
-            </Button>
+            <Grid item xs={12} className={classes.submitRow}>
+              <Button
+                id="submit"
+                type="submit"
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                startIcon={<SaveIcon />}
+                >
+                Grabar
+              </Button>
+            </Grid>
 
-          </div>
-        </div>
+        </Grid>
       </form>
-    </React.Fragment>
+    </Container>
   )
 }
 
