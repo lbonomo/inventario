@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import { Auth } from "../context/AuthContext";
-// import firebaseConfig from "../firebaseConfig";
+import { Auth } from '../context/AuthContext';
+// import firebaseConfig from '../firebaseConfig';
 
 const Sidebar = () => {
 
@@ -19,67 +19,67 @@ const Sidebar = () => {
     }
 
     return (
-      <div className="demo-drawer mdl-layout__drawer mdl-color--grey-900 mdl-color-text--grey-50"
-         id="sidebar" aria-hidden="true" onFocus={() => hiddenSidebar() }>
-        <header className="demo-drawer-header">
-          <div className="demo-avatar-dropdown">
+      <div className='demo-drawer mdl-layout__drawer mdl-color--grey-900 mdl-color-text--grey-50'
+         id='sidebar' aria-hidden='true' onFocus={() => hiddenSidebar() }>
+        <header className='demo-drawer-header'>
+          <div className='demo-avatar-dropdown'>
             <span>{ user.email }</span>
           </div>
         </header>
-        <nav className="demo-navigation mdl-navigation mdl-color--grey-800">
+        <nav className='demo-navigation mdl-navigation mdl-color--grey-800'>
 
           {/*
-          <NavLink exact to="/"
+          <NavLink exact to='/'
             className={`mdl-navigation__link ${ (hashPath === '#/') && 'mdl-navigation__link--current' }`}
             >
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>
+            <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>dashboard</i>
             Tablero
           </NavLink>
           */}
 
-          <NavLink exact to="/labels"
+          <NavLink exact to='/labels'
             className={`mdl-navigation__link ${ (hashPath.match('#/labels/*') ) && 'mdl-navigation__link--current' }`}
             >
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">label</i>
+            <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>label</i>
             Etiquetas
           </NavLink>
 
-          <NavLink exact to="/products"
+          <NavLink exact to='/products'
             className={`mdl-navigation__link ${ (hashPath.match('#/products/*') ) && 'mdl-navigation__link--current' }`}
             >
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">extension</i>
+            <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>extension</i>
             Productos
           </NavLink>
 
-          <NavLink exact to="/providers"
+          <NavLink exact to='/providers'
             className={`mdl-navigation__link ${ ( hashPath.match('#/providers/*') ) && 'mdl-navigation__link--current' }`}
             >
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">store</i>
+            <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>store</i>
             Proveedores
           </NavLink>
 
-          <NavLink exact to="/scanner"
+          <NavLink exact to='/scanner'
             className={`mdl-navigation__link ${ ( hashPath.match('#/scanner/*') ) && 'mdl-navigation__link--current' }`}
             >
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">qr_code_scanner</i>
+            <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>qr_code_scanner</i>
             Scanner
           </NavLink>
 
-          <a className="mdl-navigation__link" target="_blank" rel="noopener noreferrer" href="https://console.firebase.google.com/u/1/project/gatti-inventrio/overview">
-            <i className="mdl-color-text--blue-grey-400 material-icons" role="presentation" >build</i>
+          <a className='mdl-navigation__link' target='_blank' rel='noopener noreferrer' href='https://console.firebase.google.com/u/1/project/gatti-inventrio/overview'>
+            <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation' >build</i>
             Backend
           </a>
 
           {/*
-            <a className="mdl-navigation__link" href=""><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">qr_code</i>Suministros</a>
-            <a className="mdl-navigation__link" href=""><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">store</i>Suministros</a>
-            <a className="mdl-navigation__link" href=""><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Supplies</a>
-            <a className="mdl-navigation__link" href=""><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Supplies</a>
-            <a className="mdl-navigation__link" href=""><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+            <a className='mdl-navigation__link' href=''><i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>qr_code</i>Suministros</a>
+            <a className='mdl-navigation__link' href=''><i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>store</i>Suministros</a>
+            <a className='mdl-navigation__link' href=''><i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>inbox</i>Supplies</a>
+            <a className='mdl-navigation__link' href=''><i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>delete</i>Supplies</a>
+            <a className='mdl-navigation__link' href=''><i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>report</i>Spam</a>
           */}
-          <div className="mdl-layout-spacer"></div>
+          <div className='mdl-layout-spacer'></div>
           {/* TODO - Leer la URL de un archivo de configuración */}
-          <NavLink exact to="/logout" className="mdl-navigation__link"><i className="mdl-color-text--blue-grey-400 material-icons" role="presentation">close</i>Salir</NavLink>
+          <NavLink exact to='/logout' className='mdl-navigation__link'><i className='mdl-color-text--blue-grey-400 material-icons' role='presentation'>close</i>Salir</NavLink>
         </nav>
       </div>
     )
