@@ -31,6 +31,8 @@ package-lock.json
 firebase.json
 firebase.md
 src/firebaseConfig.js
+src/firebaseConfig.dev.js
+src/firebaseConfig.prod.js
 database.rules.json
 
 # otros

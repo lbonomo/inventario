@@ -2,77 +2,69 @@ import React, { useState, useEffect } from "react";
 import firebaseConfig from '../../firebaseConfig'
 
 import Loading from '../../components/Loading'
-import '../../css/scanner.css'
-import Footer from './Footer'
-import { dateFormat } from '../../libs/date'
+import Data from './Data'
+import NoData from './NoData'
 
-// Material UI
-import Grid from '@material-ui/core/Grid';
 
 const Result = ( {id, reset} ) => {
+  const [data, setData] = useState({})
+  const [last, setLast] = useState(null)
+  const [read, setRead] = useState(false)
+  const db = firebaseConfig.firestore()
 
-  const getLabel = async() => {
-    const db = firebaseConfig.firestore()
-    const query = await db.collection('store').doc(id)
+  const getData = async() => {
+    const query = await db.collection('labels').doc(id)
     query.onSnapshot( (querySnapshot) => {
       // console.log( querySnapshot.data() )
-      let data = querySnapshot.data()
-      setLabel( data )
-      // setLable( { 'kg': data.kg} )
+      let result = querySnapshot.data()
+      console.log(result)
+      if (!result) {
+        setRead(true)
+      } else {
+        setRead(true)
+        setData( result )
+      }
     })
   }
 
-  const [label, setLabel] = useState({})
+  const getLast = async() => {
+    // obtengo la fecha del primer producto cargado
+    console.log(data.in.date)
+    const query = await db.collection('labels')
+      .where('product.id', '==', data.product.id)
+      .where('out.date', '==', "")
+      .where('in.date', '<=', data.in.date)
+      .limit(1)
+    query.get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+        setLast(doc.data().in.date)
+      });
+    }).catch(
+      setLast(data.in.date)
+    );
+  }
 
   useEffect(() => {
-    getLabel(id) // eslint-disable-next-line
+    if ( Object.keys(data).length >= 1 ) {
+      getLast() // eslint-disable-next-line
+    }
+  }, [data])
+
+  useEffect(() => {
+    getData() // eslint-disable-next-line
   }, [])
 
   return (
     <div>
-      { ( Object.keys(label).length !== 0 )
+      { ( Object.keys(data).length !== 0 )
         ?
-          <React.Fragment>
-              <h2 className="product">{label.product.name}</h2>
-              <h3 className='provider'>{label.provider.name}</h3>
-
-              <Grid container>
-                <Grid item xs={12} className='cardRow'>
-                  <Grid container alignItems="center">
-                    <Grid item xs={6} sm={6} className='cardItem'>
-                      <label className='cardLabel' htmlFor='dateIn'>Ingreso</label>
-                      <div className='cardData' id='dateIn'>{ dateFormat(label.dateIn) }</div>
-                    </Grid>
-                    <Grid item xs={6} sm={6} className='cardItem'>
-                      <label className='cardLabel' htmlFor='dateExpiration'>Expira</label>
-                      <div className='cardData' id='dateExpiration'>{ dateFormat(label.dateExpiration) }</div>
-                    </Grid>
-                  </Grid>
-                </Grid>
-
-                <Grid item xs={12} className='cardRow'>
-                  <Grid container alignItems="center">
-                    <Grid item xs={4} sm={4} className='cardItem'>
-                      <label className='cardLabel' htmlFor='kg'>Kg</label>
-                      <div className='cardDataSmall' id='kg'>{ label.kg }</div>
-                    </Grid>
-                    <Grid item xs={4} sm={4} className='cardItem'>
-                      <label className='cardLabel' htmlFor='lote'>Lote</label>
-                      <div className='cardDataSmall' id='lote'>{ label.lote }</div>
-                    </Grid>
-                    <Grid item xs={4} sm={4} className='cardItem'>
-                      <label className='cardLabel' htmlFor='set'>Set</label>
-                      <div className='cardDataSmall' id='set'>{ label.set }</div>
-                    </Grid>
-                  </Grid>
-                </Grid>
-
-              </Grid>
-
-            <Footer reset={reset} />
-          </React.Fragment>
+          <Data reset={reset} label={id} data={data} last={last} />
         :
-          <Loading />
+        ( read )
+          ?
+            <NoData reset={reset} />
+          :
+            <Loading />
       }
     </div>
   )

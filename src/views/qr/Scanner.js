@@ -3,23 +3,23 @@ import React, { useState, useContext } from "react"
 // Si bien *react-qr-scanner* no muestra mensaje de error, es muy lerdo para leer
 import QrReader from 'react-qr-reader'
 
-import '../../css/scanner.css'
+
 import { Auth } from '../../context/AuthContext';
 import Loading from '../../components/Loading'
+
+import useStyles from './style'
 import Header from './Header'
 import Result from './Result'
-
 
 // Material UI
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
-
-
 const Scanner = () => {
   const [scann, setScann] = useState(true)
   const [id, setID] = useState()
   const { user } = useContext(Auth)
+  const classes = useStyles()
 
   /* Callback - ERROR */
   function handleError(err) {
@@ -60,12 +60,16 @@ const Scanner = () => {
       <CssBaseline />
       <Header username={ user.email } />
       <Container>
-        <div className='scanner'>
+        <div className={classes.scanner}>
           { ( scann )
             ?
               <QrReader onScan = { handleScan } onError = { handleError } delay = { config.delay } style = { config.style } />
             :
-            ( !id ) ? <Loading /> :  <Result id={id} reset={reset} />
+              ( !id )
+                ?
+                  <Loading />
+                :
+                  <Result id={id} reset={reset} />
           }
         </div>
       </Container>

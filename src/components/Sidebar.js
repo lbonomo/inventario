@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
+import { consoleURL } from '../firebaseConfig'
 
-import { Auth } from '../context/AuthContext';
+import { Auth } from '../context/AuthContext'
 // import firebaseConfig from '../firebaseConfig';
 
 const Sidebar = () => {
@@ -65,7 +66,7 @@ const Sidebar = () => {
             Scanner
           </NavLink>
 
-          <a className='mdl-navigation__link' target='_blank' rel='noopener noreferrer' href='https://console.firebase.google.com/u/1/project/gatti-inventrio/overview'>
+          <a className='mdl-navigation__link' target='_blank' rel='noopener noreferrer' href={consoleURL}>
             <i className='mdl-color-text--blue-grey-400 material-icons' role='presentation' >build</i>
             Backend
           </a>

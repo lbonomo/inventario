@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useHistory } from "react-router-dom";
 import firebaseConfig from '../../../firebaseConfig'
+import { Auth } from '../../../context/AuthContext';
 
 // Material UI
 import TextField from '@material-ui/core/TextField';
@@ -18,6 +19,7 @@ import useStyles from './style'
 const LabelsCRUD = () => {
   const classes = useStyles();
   const history = useHistory();
+  const { user } = useContext(Auth)
 
   const db = firebaseConfig.firestore()
 
@@ -32,12 +34,19 @@ const LabelsCRUD = () => {
   const saveItem = async() => {
     console.log('Guardando...')
     // TODO - Validar todos los campos.
-    await db.collection('store').doc().set(
+    await db.collection('labels').doc().set(
       {
         'product': item.product,
         'provider': item.provider,
-        'dateIn': item.dateIn,
-        'dateExpiration': item.dateExpiration,
+        'in': {
+          'user': user.email,
+          'date': item.dateIn
+        },
+        'out': {
+          'user': '',
+          'date': ''
+        },
+        'expiry': item.dateExpiration,
         'kg': item.kg,
         'lote': item.lote,
         'set': item.set,

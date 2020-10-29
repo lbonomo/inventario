@@ -40,7 +40,7 @@ const SearchProvider = ({ disabled, item, setItem }) => {
         id="provider"
         name="provider"
         onChange={ (event, value) => {
-          setItem({ ...item, 'provider':{'id': value.id, 'name': value.name } }) 
+          setItem({ ...item, 'provider':{'id': value.id, 'name': value.name } })
         }}
         getOptionLabel={ (option) => option.name }
         options={options}
@@ -49,7 +49,7 @@ const SearchProvider = ({ disabled, item, setItem }) => {
           setInputValue(newInputValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} required label="Produdcto" InputLabelProps={{ shrink: true }} />
+          <TextField {...params} required label="Proveedor" InputLabelProps={{ shrink: true }} />
         )}
       />
     )

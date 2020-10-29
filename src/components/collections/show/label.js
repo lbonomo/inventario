@@ -75,7 +75,7 @@ function LabelShow() {
   const db = firebaseConfig.firestore()
 
   const getLabel = async() => {
-    const query = await db.collection('store').doc(id)
+    const query = await db.collection('labels').doc(id)
     query.onSnapshot( (querySnapshot) => {
       console.log( querySnapshot.data() )
       let data = querySnapshot.data()
@@ -100,11 +100,15 @@ function LabelShow() {
             <Grid container>
               <Grid item xs={12} className={classes.cardRow}>
                 <Grid container alignItems="center">
-                  <Grid item xs={12} sm={6} className={classes.cardItem}>
+                  <Grid item xs={12} sm={4} className={classes.cardItem}>
                     <label className={classes.cardLabel} htmlFor='dateIn'>Ingreso</label>
-                    <div className={classes.cardData} id='dateIn'>{ dateFormat(label.dateIn) }</div>
+                    <div className={classes.cardData} id='dateIn'>{ dateFormat(label.in.date) }</div>
                   </Grid>
-                  <Grid item xs={12} sm={6} className={classes.cardItem}>
+                  <Grid item xs={12} sm={4} className={classes.cardItem}>
+                    <label className={classes.cardLabel} htmlFor='OutDate'>Egreso</label>
+                    <div className={classes.cardData} id='OutDate'>{ dateFormat(label.out.date) }</div>
+                  </Grid>
+                  <Grid item xs={12} sm={4} className={classes.cardItem}>
                     <label className={classes.cardLabel} htmlFor='dateExpiration'>Expira</label>
                     <div className={classes.cardData} id='dateExpiration'>{ dateFormat(label.dateExpiration) }</div>
                   </Grid>

@@ -7,19 +7,18 @@ import Link from '@material-ui/core/Link';
 import { DataGrid } from '@material-ui/data-grid';
 import Container from '@material-ui/core/Container';
 import Icon from '@material-ui/core/Icon';
+import { dateFormat } from '../../../libs/date'
 
 const getName = (params: ValueGetterParams) => {
   return params.getValue(params.field).name
 }
 
-const dateFormat = (params: ValueGetterParams) => {
-  const date = new Date(params.getValue(params.field))
-  if (!isNaN(date.getTime())) {
-      // Months use 0 index.
-      return `${("0"+date.getDate()).slice(-2)}/${date.getMonth()+1}/${date.getFullYear()}`
-  } else {
-    return '-'
-  }
+const getDate = (params: ValueGetterParams) => {
+  return dateFormat(params.getValue(params.field).date)
+}
+
+const eFormat = (params: ValueGetterParams) => {
+  return dateFormat(params.getValue(params.field))
 }
 
 const ActionsHeader = (params: ValueGetterParams) => {
@@ -42,10 +41,11 @@ const ActionsLinks = (params: ValueGetterParams) => {
 }
 
 const columns = [
-  { field: 'product', headerName: 'Producto', valueGetter: getName, width: 250, sortable: false },
-  { field: 'provider', headerName: 'Proveedor', valueGetter: getName, width: 250, sortable: false  },
-  { field: 'dateIn', headerName: 'Ingreso', type: 'date', valueFormatter: dateFormat },
-  { field: 'dateExpiration', headerName: 'Expira', type: 'date', valueFormatter: dateFormat },
+  { field: 'product', headerName: 'Producto', valueGetter: getName, width: 200, sortable: false },
+  { field: 'provider', headerName: 'Proveedor', valueGetter: getName, width: 200, sortable: false  },
+  { field: 'in', headerName: 'Ingreso', type: 'date', valueGetter: getDate },
+  { field: 'out', headerName: 'Egreso', type: 'date', valueGetter: getDate },
+  { field: 'expiry', headerName: 'Expira', type: 'date', valueFormatter: eFormat },
   { field: 'kg', headerName: 'Kg', width: 75, type: 'number', sortable: false },
   { field: 'lote', headerName: 'Lote', width: 75, sortable: false },
   { field: 'set', headerName: 'Set', width: 75, sortable: false },
@@ -57,10 +57,10 @@ function LabelsList() {
   const [items, setItems] = useState([])
   // Paginado
   // const limit = 5
-  const field = "dateIn";
+  const field = "in";
 
   const db = firebaseConfig.firestore()
-  const query = db.collection('store').orderBy(field)
+  const query = db.collection('labels').orderBy(field)
 
   // Get the firsts documments in collection
   const getItems = () => {
