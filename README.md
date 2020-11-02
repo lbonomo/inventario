@@ -17,6 +17,6 @@ Proyecto simple para control de inventario
 
 ![404](media/404.png)
 
-![qr1](media/qr1.png =75x100)
-![qr2](media/qr2.png =75x)
-![qr3](media/qr3.png =75x)
+![qr1](media/qr1.png)
+![qr2](media/qr2.png)
+![qr3](media/qr3.png)
