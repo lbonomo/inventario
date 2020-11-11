@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import firebaseConfig from '../../../firebaseConfig'
-import "../../../css/lists.css";
+// import "../../../css/lists.css";
+import useStyles from './style'
 
 // Material UI
 import Link from '@material-ui/core/Link';
@@ -38,6 +39,7 @@ const columns = [
 ]
 
 function ProductList() {
+  const classes = useStyles()
   const [products, setProducts] = useState([])
   const field = "name";
   const db = firebaseConfig.firestore()
@@ -67,8 +69,10 @@ function ProductList() {
 
 
   return (
-    <Container className='container'>
-      <DataGrid rows={ products } columns={columns} pageSize={5} />
+    <Container className={classes.container}>
+      <div className={classes.dataGridContainer} >
+        <DataGrid rows={ products } columns={columns} pageSize={5} />
+      </div>
     </Container>
   )
 }

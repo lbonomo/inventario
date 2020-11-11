@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import firebaseConfig from '../../../firebaseConfig'
+import useStyles from './style'
 
 // Material UI
 import { DataGrid } from '@material-ui/data-grid';
@@ -37,7 +38,7 @@ const columns = [
 
 
 function ProviderList() {
-
+  const classes = useStyles()
   const [providers, setProviders] = useState([])
   const field = "name";
 
@@ -67,8 +68,10 @@ function ProviderList() {
   },[])
 
   return (
-    <Container className='container'>
-      <DataGrid rows={ providers } columns={columns} pageSize={5} />
+    <Container className={classes.container}>
+      <div className={classes.dataGridContainer} >
+        <DataGrid rows={ providers } columns={columns} pageSize={5} />
+      </div>
     </Container>
   )
 }
