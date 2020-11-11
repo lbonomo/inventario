@@ -31,6 +31,8 @@ function App() {
             <Route exact path="/labels/print/:id" component={LablePrint} />
             <Route exact path="/products" component={Default} />
             <Route exact path="/products/add" component={Default} />
+            <Route exact path="/products/delete/:id" component={Default} />
+            <Route exact path="/products/edit/:id" component={Default} />
             <Route exact path="/providers" component={Default} />
             <Route exact path="/providers/add" component={Default} />
             <Route exact path="/scanner" component={Scanner} />

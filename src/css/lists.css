@@ -5,14 +5,13 @@
   width: 100%;
 }
 
-.actionsHeader {
-  height: 100%;
-  vertical-align: middle;
+.actionsHeader, .actionLinks  {
+  display: flex;
+  height: 52px;
 }
-
-.actionLinks {
-  height: 100%;
-  vertical-align: middle;
+.actionsHeader span.material-icons,
+.actionLinks span.material-icons {
+  margin: 1rem 0.4rem;
 }
 
 .MuiDataGrid-root .MuiDataGrid-columnSeparator {

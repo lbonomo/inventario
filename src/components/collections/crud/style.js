@@ -5,6 +5,11 @@ const useStyles = makeStyles(() => ({
     marginTop: '3rem',
   },
 
+  card: {
+    marginTop: '3rem',
+    marginBottom: '2rem'
+  },
+
   formRow: {
     marginTop: '2rem'
   },
@@ -22,10 +27,30 @@ const useStyles = makeStyles(() => ({
     textAlign: 'right',
   },
 
+  cardTitle: {
+    fontSize: '1.6rem',
+    textAlign: 'center',
+  },
+
+  cardSubtitle: {
+    textAlign: 'center',
+    fontSize: '1.2rem',
+    fontWeight: '300',
+    marginBottom: '2rem',
+    paddingBottom: '0.5rem',
+    borderBottom: '1px solid grey',
+  },
+
   button: {
     fontSize: "1rem",
     borderRadius: 0,
   },
+
+  cardActions: {
+    margin: '1rem',
+    flexDirection: 'row-reverse',
+  },
+
 }))
 
 export default useStyles

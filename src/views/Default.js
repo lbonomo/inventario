@@ -47,8 +47,12 @@ function Default({history}) {
                 <Route exact path="/labels/show/:id" component={Labels} />
                 <Route exact path="/products" component={Products} />
                 <Route exact path="/products/add" component={Products} />
+                <Route exact path="/products/edit/:id" component={Products} />
+                <Route exact path="/products/delete/:id" component={Products} />
                 <Route exact path="/providers" component={Providers} />
                 <Route exact path="/providers/add" component={Providers} />
+                <Route exact path="/providers/edit/:id" component={Providers} />
+                <Route exact path="/providers/delete/:id" component={Providers} />
               </Switch>
             </HashRouter>
           </div>

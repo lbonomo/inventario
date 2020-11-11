@@ -110,7 +110,7 @@ function LabelShow() {
                   </Grid>
                   <Grid item xs={12} sm={4} className={classes.cardItem}>
                     <label className={classes.cardLabel} htmlFor='dateExpiration'>Expira</label>
-                    <div className={classes.cardData} id='dateExpiration'>{ dateFormat(label.dateExpiration) }</div>
+                    <div className={classes.cardData} id='dateExpiration'>{ dateFormat(label.expiry) }</div>
                   </Grid>
                 </Grid>
               </Grid>

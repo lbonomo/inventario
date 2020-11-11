@@ -41,6 +41,7 @@ const ActionsLinks = (params: ValueGetterParams) => {
 }
 
 const columns = [
+  { field: 'actions', headerName: 'Acciones', renderHeader: ActionsHeader, renderCell: ActionsLinks, width: 75, sortable: false },
   { field: 'product', headerName: 'Producto', valueGetter: getName, width: 200, sortable: false },
   { field: 'provider', headerName: 'Proveedor', valueGetter: getName, width: 200, sortable: false  },
   { field: 'in', headerName: 'Ingreso', type: 'date', valueGetter: getDate },
@@ -49,7 +50,6 @@ const columns = [
   { field: 'kg', headerName: 'Kg', width: 75, type: 'number', sortable: false },
   { field: 'lote', headerName: 'Lote', width: 75, sortable: false },
   { field: 'set', headerName: 'Set', width: 75, sortable: false },
-  { field: 'actions', headerName: 'Acciones', renderHeader: ActionsHeader, renderCell: ActionsLinks, width: 75, sortable: false },
 ]
 
 function LabelsList() {

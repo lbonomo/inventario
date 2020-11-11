@@ -4,7 +4,7 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import "../../css/style.css"
 import CollectionBar from "../CollectionBar"
 import ProductList from "./list/products"
-import ProductCRUD from "./crud/products"
+import { ProductAdd, ProductDelete, ProductEdit}  from "./crud/products"
 
 function Products({mensaje}) {
     return (
@@ -20,7 +20,9 @@ function Products({mensaje}) {
                 TODO - Ver de mejorar la definicion de las rutas
                 actualmente es necesario definirlas en App.js y views/Default.js
                  */}
-              <Route exact path="/products/add" component={ ProductCRUD } />
+              <Route exact path="/products/add" component={ ProductAdd } />
+              <Route exact path="/products/edit/:id" component={ ProductEdit } />
+              <Route exact path="/products/delete/:id" component={ ProductDelete } />
             </Switch>
           </HashRouter>
 
