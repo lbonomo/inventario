@@ -35,6 +35,8 @@ function App() {
             <Route exact path="/products/edit/:id" component={Default} />
             <Route exact path="/providers" component={Default} />
             <Route exact path="/providers/add" component={Default} />
+            <Route exact path="/providers/delete/:id" component={Default} />
+            <Route exact path="/providers/edit/:id" component={Default} />
             <Route exact path="/scanner" component={Scanner} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Logout} />

@@ -129,7 +129,7 @@ export const ProductDelete = () => {
             <Card className={classes.card} >
               <CardContent>
                 <Typography className={classes.cardTitle}>{product.name}</Typography>
-                <Typography className={classes.cardSubtitle}>¿Esta seguro que decea eliminar este producto?</Typography>
+                <Typography className={classes.cardSubtitle}>¿Esta seguro que deceas eliminar este producto?</Typography>
               </CardContent>
 
               <CardActions className={classes.cardActions}>
