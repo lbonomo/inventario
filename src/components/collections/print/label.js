@@ -25,9 +25,27 @@ const useStyles = makeStyles( () => ({
     border: '1px gray dotted',
   },
 
-  qr: {
+
+  label100x100: {
+    flexDirection: 'column',
+    display: 'flex',
+    // justifyContent: 'center',
+    margin: '1.5mm 3mm',
+    borderRadius: '1mm',
+    width: '100mm',
+    height: '100mm',
+    border: '1px gray dotted',
+  },
+
+  qr80: {
     width: '80mm',
     margin: '10mm auto 0mm',
+    border: 'solid 1px gray',
+  },
+
+  qr50: {
+    width: '50mm',
+    margin: '5mm auto 0mm',
     border: 'solid 1px gray',
   },
 
@@ -108,8 +126,8 @@ function LablePrint({mensaje}) {
 
   return (
       <div className={ classes.toPrint }>
-        <div className={ classes.label100x150 }>
-          <img alt="QR Code" className={ classes.qr } src={url} />
+        <div className={ classes.label100x100 }>
+          <img alt="QR Code" className={ classes.qr50 } src={url} />
             {
               ( Object.keys(label).length !== 0)
                 ?
